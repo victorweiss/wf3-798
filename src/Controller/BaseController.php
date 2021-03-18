@@ -20,9 +20,12 @@ class BaseController extends AbstractController
 
         $prenoms = [ 'Fred', 'Paul', 'Joe' ];
 
+        $produit = [ 'nom' => 'Mon produit', 'prix' => 9.99, 'stock' => 0 ];
+
         return $this->render('base/home.html.twig', [
             'prenom' => '',
             'prenoms' => $prenoms,
+            'produit' => $produit,
         ]);
     }
 
@@ -32,5 +35,19 @@ class BaseController extends AbstractController
     public function about(): Response
     {
         return $this->render('base/about.html.twig');
+    }
+
+    public function header(string $routeName)
+    {
+        $articles = [
+            [ 'titre' => 'Article 1' ],
+            [ 'titre' => 'Article 2' ],
+            [ 'titre' => 'Article 3' ],
+        ];
+
+        return $this->render('base/_header.html.twig', [
+            'articles' => $articles,
+            'route_name' => $routeName,
+        ]);
     }
 }

@@ -10,4 +10,18 @@
     <br><br>
     <a href="{{ path('about') }}">À propos de moi</a>
 
+    <hr>
+
+    <div>
+        {{ 9.99|price }}
+    </div>
+
+    <div>
+        {{ produit.nom }} coûte {{ produit.prix|price }} {{ produit|badge('stock') }}
+    </div>
+
+    <hr>
+
+    {{ hello('Victor') }}
+
 {% endblock %}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="h-100">
+    {% set route_name = app.request.attributes.get('_route') %}
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,9 @@
     <body class="d-flex flex-column h-100">
 
         <div class="flex-shrink-0">
-            {% include 'base/_header.html.twig' %}
+            {{ render(controller('App\\Controller\\BaseController::header', {
+                'routeName' : route_name
+            })) }}
 
             <div class="container">
                 {% block body %}{% endblock %}
