@@ -28,7 +28,7 @@ class TwigController extends AbstractController
         );
 
         return $this->render('twig/index.html.twig', [
-
+            'personnes' => $personnes,
         ]);
     }
 }

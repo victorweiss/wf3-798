@@ -8,30 +8,76 @@
 
 
     <h3>1.</h3>
-
+    {% for personne in personnes %}
+        <div>
+            {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+            <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+        </div>
+    {% endfor %}
 
     <hr>
     <h3>2.</h3>
-
+    {% for personne in personnes %}
+        {% if personne.nom == 'Dupont' %}
+            <div>
+                {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+                <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+            </div>
+        {% endif %}
+    {% endfor %}
 
     <hr>
     <h3>3.</h3>
-
+    {% for personne in personnes|slice(0,3) %}
+        <div>
+            {{ personne.prenom }} {{ personne.nom|upper }} ({{ personne.statut }}),
+            <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+        </div>
+    {% endfor %}
 
     <hr>
     <h3>4.</h3>
-
+    {% for personne in personnes %}
+        {% if personne.naissance|date('Y') > 1950 %}
+            <div>
+                {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+                <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+            </div>
+        {% endif %}
+    {% endfor %}
 
     <hr>
     <h3>5.</h3>
-
+    {% for personne in personnes|sort((a, b) => a.naissance <=> b.naissance) %}
+        <div>
+            {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+            <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+        </div>
+    {% endfor %}
 
     <hr>
     <h3>6.</h3>
-
+    {% for personne in personnes %}
+        <div
+            {% if loop.first %}style="color: blue;"{% endif %}
+            {% if loop.last %}style="color: red;"{% endif %}
+        >
+            {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+            <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+        </div>
+    {% endfor %}
 
     <hr>
     <h3>7.</h3>
+    {% for personne in personnes %}
+        {% if loop.index0 is even and loop.index0 %}
+            <br>
+        {% endif %}
+        <div>
+            {{ personne.prenom }} {{ personne.nom }} ({{ personne.statut }}),
+            <i>date de naissance : {{ personne.naissance|date('d-m-Y') }}</i>
+        </div>
+    {% endfor %}
 
 
 {% endblock %}
