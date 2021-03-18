@@ -18,8 +18,11 @@ class BaseController extends AbstractController
 
         // ...
 
-        return $this->render('base/index.html.twig', [
-            'prenom' => $prenom
+        $prenoms = [ 'Fred', 'Paul', 'Joe' ];
+
+        return $this->render('base/home.html.twig', [
+            'prenom' => '',
+            'prenoms' => $prenoms,
         ]);
     }
 
