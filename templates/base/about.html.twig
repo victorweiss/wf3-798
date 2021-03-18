@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    A propos
-    <br><br>
-    <a href="{{ path('home') }}">Acceuil</a>
+
+    <h1>À propos de moi</h1>
+
+    {% for x in 1..5 %}
+        <div class="mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid aperiam aspernatur assumenda blanditiis deleniti ex hic id inventore iusto, nam nobis, odit ratione recusandae reprehenderit tempora vero? Accusamus blanditiis dolorum harum nostrum numquam quos. Architecto assumenda eius laboriosam quam repellat repudiandae sequi! Deserunt dolor expedita harum quidem soluta. Asperiores aut corporis culpa cupiditate dolorum eius harum ipsam itaque iure laudantium molestias natus pariatur quae, quis sequi unde, veritatis vero? Ad aut cum dolore eaque enim esse expedita, facere modi nam recusandae tempora temporibus, vel! Accusamus eum in laudantium maiores!
+        </div>
+    {% endfor %}
+
 {% endblock %}

@@ -6,22 +6,11 @@
 
 {% block body %}
 
-    Accueil <br>
-    <br><br>
-    <a href="{{ path('about') }}">À propos de moi</a>
+    <h1>Vous êtes à l'accueil</h1>
+    <div class="lead">Bienvenue sur mon site</div>
 
-    <hr>
-
-    <div>
-        {{ 9.99|price }}
-    </div>
-
-    <div>
-        {{ produit.nom }} coûte {{ produit.prix|price }} {{ produit|badge('stock') }}
-    </div>
-
-    <hr>
-
-    {{ hello('Victor') }}
+    {% for x in 1..2 %}
+        <div class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta eius expedita fugiat minus nisi omnis quam sequi, soluta tempora veritatis. Itaque iure laboriosam molestias perspiciatis tempore. Aperiam asperiores consequuntur delectus dolorem ea eius expedita fugiat hic minus nostrum, placeat praesentium?</div>
+    {% endfor %}
 
 {% endblock %}
