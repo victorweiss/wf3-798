@@ -20,8 +20,11 @@ class ContactController extends AbstractController
             $message = $request->request->get('message');
 
             if ($email && $message) {
-                $emailService->send();
-                dd($email, $message);
+                $emailService->send([
+                    'replyTo' => $email,
+                    'message' => $message
+                ]);
+                // dd($email, $message);
                 $this->addFlash('success', "<b>Merci !</b> Nous avons bien reçu votre message.");
             } else {
                 $this->addFlash('danger', "Le formulaire contient des erreurs");
