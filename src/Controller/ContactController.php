@@ -15,6 +15,9 @@ class ContactController extends AbstractController
      */
     public function index(Request $request, EmailService $emailService): Response
     {
+
+
+        
         if ($request->isMethod('POST')) {
             $email = $request->request->get('email');
             $message = $request->request->get('message');
