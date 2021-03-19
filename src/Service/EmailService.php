@@ -4,8 +4,8 @@ namespace App\Service;
 
 use Exception;
 use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 
 class EmailService
 {
@@ -18,12 +18,12 @@ class EmailService
         string $emailAdmin,
         string $appEnv,
         MailerInterface $mailer,
-        LoggerInterface $logger
+        LoggerInterface $mailerLogger
     ) {
         $this->emailAdmin = $emailAdmin;
         $this->mailer = $mailer;
         $this->appEnv = $appEnv;
-        $this->logger = $logger;
+        $this->logger = $mailerLogger;
     }
 
     public function send(array $data): bool
@@ -35,12 +35,14 @@ class EmailService
             $data['to'] = $this->emailAdmin;
         }
 
-        $email = (new Email())
+        $email = (new TemplatedEmail())
             ->from($data['from'] ?? $this->emailAdmin)
             ->to($data['to'] ?? $this->emailAdmin)
             ->replyTo($data['replyTo'] ?? $data['from'] ?? $this->emailAdmin)
             ->subject($data['subject'] ?? 'Mon site')
-            ->text($data['message']);
+            ->htmlTemplate($data['template'])
+            ->context($data['context'] ?? [])
+        ;
 
         try {
             $this->mailer->send($email);

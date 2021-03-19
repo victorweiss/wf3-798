@@ -1,0 +1,11 @@
+{% extends "email/base.html.twig" %}
+
+{% block body %}
+
+    Bonjour Administrateur, <br><br>
+    Vous venez de recevoir un mail de : <br>
+    <b>{{ mail }}</b>
+    <br><br>
+    {{ message }}
+
+{% endblock %}

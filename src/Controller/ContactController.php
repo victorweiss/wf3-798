@@ -22,12 +22,17 @@ class ContactController extends AbstractController
             if ($email && $message) {
                 $sent = $emailService->send([
                     'replyTo' => $email,
-                    'message' => $message,
                     'subject' => "CONTACT DU SITE",
+                    'template' => 'email/contact.html.twig',
+                    'context' => [
+                        'mail' => $email,
+                        'message' => $message,
+                    ]
                 ]);
 
                 if ($sent) {
                     $this->addFlash('success', "<b>Merci !</b> Nous avons bien reçu votre message.");
+                    return $this->redirectToRoute('contact');
                 } else {
                     $this->addFlash('danger', "Le mail n'a malheureusement pas pu être envoyé :(");
                 }

@@ -1,5 +1,12 @@
 monolog:
+    channels: ['mailer']
     handlers:
+        mailer:
+            # log all messages (since debug is the lowest level)
+            level: debug
+            type: stream
+            path: '%kernel.logs_dir%/mailer.log'
+            channels: [ mailer ]
         main:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
