@@ -2,12 +2,20 @@
 
 namespace App\Twig;
 
+use App\Service\TestService;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+    private $testService;
+
+    public function __construct(TestService $testService)
+    {
+        $this->testService = $testService;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -33,7 +41,7 @@ class AppExtension extends AbstractExtension
 
     public function sayHello(string $name): string
     {
-        return "Bonjour $name !";
+        return $this->testService->sayHello($name);
     }
 
     public function displayBadge(array $product, string $type): string
