@@ -20,12 +20,18 @@ class ContactController extends AbstractController
             $message = $request->request->get('message');
 
             if ($email && $message) {
-                $emailService->send([
+                $sent = $emailService->send([
                     'replyTo' => $email,
-                    'message' => $message
+                    'message' => $message,
+                    'subject' => "CONTACT DU SITE",
                 ]);
-                // dd($email, $message);
-                $this->addFlash('success', "<b>Merci !</b> Nous avons bien reçu votre message.");
+
+                if ($sent) {
+                    $this->addFlash('success', "<b>Merci !</b> Nous avons bien reçu votre message.");
+                } else {
+                    $this->addFlash('danger', "Le mail n'a malheureusement pas pu être envoyé :(");
+                }
+
             } else {
                 $this->addFlash('danger', "Le formulaire contient des erreurs");
             }
