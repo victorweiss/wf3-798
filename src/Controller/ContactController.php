@@ -46,4 +46,48 @@ class ContactController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/contact-pro", name="contact_pro")
+     */
+    public function contactPro(Request $request, EmailService $emailService)
+    {
+        if ($request->isMethod('POST')) {
+            $data = [
+                'firstname' => $request->request->get('firstname'),
+                'lastname' => $request->request->get('lastname'),
+                'company' => $request->request->get('company'),
+                'mail' => $request->request->get('email'),
+                'subject' => $request->request->get('subject'),
+                'message' => $request->request->get('message'),
+            ];
+
+            // Envoyé à l'admin
+            $sentToAdmin = $emailService->send([
+                'replyTo' => $data['mail'],
+                'subject' => '[CONTACT PRO] - ' . $data['subject'],
+                'template' => 'email/contact_pro.html.twig',
+                'context' => $data,
+            ]);
+
+            // Accusé de réception
+            $sentToContact = $emailService->send([
+                'to' => $data['mail'],
+                'subject' => "Merci de nous avoir contacté",
+                'template' => 'email/contact_pro_confirmation.html.twig',
+                'context' => $data
+            ]);
+
+            if ($sentToAdmin && $sentToContact) {
+                $this->addFlash('success', "Merci de nous avoir contacté");
+                return $this->redirectToRoute('contact_pro');
+            } else {
+                $this->addFlash('danger',"Une erreur est survenue pendant l'envoi d'email");
+            }
+        }
+
+        return $this->render('contact/contact_pro.html.twig', [
+
+        ]);
+    }
 }

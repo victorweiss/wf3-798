@@ -26,6 +26,16 @@ class EmailService
         $this->logger = $mailerLogger;
     }
 
+    /**
+     * $data = [
+     *  'from' => '', // if empty => adminEmail
+     *  'to' => '', // if empty => adminEmail
+     *  'replyTo' => '',
+     *  'subject' => '',
+     *  'template' => '',
+     *  'context' => [],
+     * ]
+     */
     public function send(array $data): bool
     {
         if ($this->appEnv === 'dev') {
