@@ -6,4 +6,17 @@
 
     <h1>Demandes de contact pro</h1>
 
+    {% for contactPro in contactPros %}
+        {{ contactPro.id }} - Demande de <b>{{ contactPro.fullname }}</b> ({{ contactPro.company }})
+        - le {{ contactPro.sentAt|date('d/m/Y') }} <br>
+        <u>Email</u> : {{ contactPro.email }} <br>
+        <u>Sujet</u> : {{ contactPro.subject }} <br>
+        {{ contactPro.message|nl2br }}
+        <div class="text-end">
+            <a href="{{ path('admin_contact_pro_delete', {id: contactPro.id}) }}" class="btn btn-danger">Supprimer</a>
+        </div>
+        <hr>
+        <br>
+    {% endfor %}
+
 {% endblock %}

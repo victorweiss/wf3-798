@@ -22,19 +22,17 @@ class ContactProRepository extends ServiceEntityRepository
     // /**
     //  * @return ContactPro[] Returns an array of ContactPro objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    // public function findByExampleField($value)
+    // {
+    //     return $this->createQueryBuilder('c')
+    //         ->andWhere('c.firstname = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('c.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
     /*
     public function findOneBySomeField($value): ?ContactPro
