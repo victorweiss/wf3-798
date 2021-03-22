@@ -13,45 +13,44 @@
                 <div class="lead">Nous répondons sous 48h</div>
             </div>
 
-            <form method="POST">
+            {{ form_start(form) }}
 
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label for="lastname" class="form-label">Nom</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="firstname" class="form-label">Prénom</label>
-                        <input type="text" class="form-control" name="firstname" id="firstname">
-                    </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    {{ form_row(form.firstname) }}
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <label for="company" class="form-label">Société</label>
-                        <input type="text" class="form-control" name="company" id="company">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" id="email">
-                    </div>
+                <div class="col-md-6">
+                    {{ form_row(form.lastname) }}
                 </div>
+            </div>
 
-                <div class="col-md-12 mt-3">
-                    <label for="subject" class="form-label">Sujet</label>
-                    <input type="text" class="form-control" name="subject" id="subject">
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    {{ form_row(form.company) }}
                 </div>
-
-                <div class="col-md-12 mt-3">
-                    <label for="message" class="form-label">Votre message</label>
-                    <textarea name="message" id="message" rows="7" class="form-control"></textarea>
+                <div class="col-md-6">
+                    {{ form_row(form.email) }}
                 </div>
+            </div>
 
-                <div class="text-end mt-3">
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
+            <div class="mt-3">
+                {{ form_row(form.subject) }}
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    {{ form_label(form.message) }}
                 </div>
+                <div class="col-md-9">
+                    {{ form_widget(form.message) }}
+                </div>
+            </div>
 
-            </form>
+            <div class="mt-3">
+                {{ form_row(form.submit) }}
+            </div>
+
+            {{ form_end(form) }}
 
         </div>
     </div>

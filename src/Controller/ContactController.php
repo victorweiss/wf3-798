@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ContactPro;
+use App\Form\ContactProType;
 use App\Service\EmailService;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,15 +55,12 @@ class ContactController extends AbstractController
      */
     public function contactPro(Request $request, EmailService $emailService)
     {
-        if ($request->isMethod('POST')) {
-            $contactPro = (new ContactPro())
-                ->setFirstname($request->request->get('firstname'))
-                ->setLastname($request->request->get('lastname'))
-                ->setCompany($request->request->get('company'))
-                ->setEmail($request->request->get('email'))
-                ->setSubject($request->request->get('subject'))
-                ->setMessage($request->request->get('message'))
-                ->setSentAt(new DateTime());
+        $contactPro = new ContactPro();
+        $form = $this->createForm(ContactProType::class, $contactPro);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contactPro->setSentAt(new DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($contactPro);
@@ -93,7 +91,7 @@ class ContactController extends AbstractController
         }
 
         return $this->render('contact/contact_pro.html.twig', [
-
+            'form' => $form->createView(),
         ]);
     }
 }
