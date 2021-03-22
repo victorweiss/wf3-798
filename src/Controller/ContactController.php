@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactPro;
 use App\Service\EmailService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,29 +55,33 @@ class ContactController extends AbstractController
     public function contactPro(Request $request, EmailService $emailService)
     {
         if ($request->isMethod('POST')) {
-            $data = [
-                'firstname' => $request->request->get('firstname'),
-                'lastname' => $request->request->get('lastname'),
-                'company' => $request->request->get('company'),
-                'mail' => $request->request->get('email'),
-                'subject' => $request->request->get('subject'),
-                'message' => $request->request->get('message'),
-            ];
+            $contactPro = (new ContactPro())
+                ->setFirstname($request->request->get('firstname'))
+                ->setLastname($request->request->get('lastname'))
+                ->setCompany($request->request->get('company'))
+                ->setEmail($request->request->get('email'))
+                ->setSubject($request->request->get('subject'))
+                ->setMessage($request->request->get('message'))
+                ->setSentAt(new DateTime());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contactPro);
+            $em->flush();
 
             // Envoyé à l'admin
             $sentToAdmin = $emailService->send([
-                'replyTo' => $data['mail'],
-                'subject' => '[CONTACT PRO] - ' . $data['subject'],
+                'replyTo' => $contactPro->getEmail(),
+                'subject' => '[CONTACT PRO] - ' . $contactPro->getSubject(),
                 'template' => 'email/contact_pro.html.twig',
-                'context' => $data,
+                'context' => [ 'contactPro' => $contactPro ],
             ]);
 
             // Accusé de réception
             $sentToContact = $emailService->send([
-                'to' => $data['mail'],
+                'to' => $contactPro->getEmail(),
                 'subject' => "Merci de nous avoir contacté",
                 'template' => 'email/contact_pro_confirmation.html.twig',
-                'context' => $data
+                'context' => [ 'contactPro' => $contactPro ],
             ]);
 
             if ($sentToAdmin && $sentToContact) {

@@ -2,18 +2,17 @@
 
 {% block body %}
 
-    Bonjour {{ firstname }} {{ lastname }} ! <br>
+    Bonjour {{ contactPro.fullname }} ! <br>
     Merci pour votre message, nous y répondrons rapidement !
 
     <br><br>
 
-    Nom : {{ lastname }} <br>
-    Prénom : {{ firstname }} <br>
-    Société : {{ company }} <br>
-    Email : {{ mail }} <br>
-    Sujet : {{ subject }} <br>
+    Nom : {{ contactPro.lastname }} <br>
+    Prénom : {{ contactPro.firstname }} <br>
+    Société : {{ contactPro.company }} <br>
+    Email : {{ contactPro.email }} <br>
+    Sujet : {{ contactPro.subject }} <br>
     Message : <br><br>
-    {{ message|nl2br }} <br>
-
+    {{ contactPro.message|nl2br }} <br>
 
 {% endblock %}
