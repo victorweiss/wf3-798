@@ -9,3 +9,28 @@ body {
 .form-group {
     margin-top: 1rem;
 }
+
+
+.img-ratio {
+    position: relative;
+}
+.img-ratio:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: var(--ratio);
+}
+.img-ratio > .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+}
+.img-ratio > .img > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+

@@ -6,6 +6,7 @@
 parameters:
     email_admin: '%env(EMAIL_ADMIN)%'
     app_env: '%env(APP_ENV)%'
+    upload_image_directory: '%kernel.project_dir%/public/images'
 
 services:
     # default configuration for services in *this* file

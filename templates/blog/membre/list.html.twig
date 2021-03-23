@@ -14,9 +14,11 @@
         {% for article in articles %}
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card">
-{#                    <a href="{{ path('blog_article') }}">#}
-{#                        <img src="https://picsum.photos/id/{{ random(1,1000) }}/400/300" class="card-img-top w-100" alt="...">#}
-{#                    </a>#}
+                    <div class="img-ratio" style="--ratio: 40%;">
+                        <div class="img">
+                            <img src="{{ asset('images/blog/' ~ article.image) }}" class="card-img-top w-100" alt="...">
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">{{ article.content|slice(0,100) }}</p>
