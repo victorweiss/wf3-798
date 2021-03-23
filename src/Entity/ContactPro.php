@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactProRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactProRepository::class)
@@ -20,31 +21,39 @@ class ContactPro
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer votre prénom")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer votre nom de famille")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer votre entreprise")
      */
     private $company;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer votre email")
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci d'indiquer le sujet")
      */
     private $subject;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Merci d'indiquer un message")
+     * @Assert\Length(min=50, minMessage="Merci d'écrire au moins {{ limit }} caractères")
      */
     private $message;
 

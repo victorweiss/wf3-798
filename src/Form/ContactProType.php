@@ -17,22 +17,22 @@ class ContactProType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => "Prénom"
+                'label' => "Prénom",
             ])
             ->add('lastname', TextType::class, [
-                'label' => "Nom"
+                'label' => "Nom",
             ])
             ->add('company', TextType::class, [
-                'label' => "Entreprise"
+                'label' => "Entreprise",
             ])
             ->add('email', EmailType::class, [
-                'label' => "Email"
+                'label' => "Email",
             ])
             ->add('subject', TextType::class, [
-                'label' => "Sujet"
+                'label' => "Sujet",
             ])
             ->add('message', TextareaType::class, [
-                'label' => "Message"
+                'label' => "Message",
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Envoyer",
