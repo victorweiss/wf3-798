@@ -10,7 +10,23 @@
         <a href="{{ path('membre_blog_create') }}" class="btn btn-primary">+ Nouvel article</a>
     </div>
 
-    ..liste..
-
+    <div class="row mt-5">
+        {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card">
+{#                    <a href="{{ path('blog_article') }}">#}
+{#                        <img src="https://picsum.photos/id/{{ random(1,1000) }}/400/300" class="card-img-top w-100" alt="...">#}
+{#                    </a>#}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content|slice(0,100) }}</p>
+                    </div>
+                    <div>
+                        <a href="{{ path('membre_blog_update', {id: article.id}) }}" class="btn btn-primary">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 

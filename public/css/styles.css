@@ -5,3 +5,7 @@ body {
 .invalid-feedback .badge-danger {
     color: #dc3545;
 }
+
+.form-group {
+    margin-top: 1rem;
+}

@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ new ? 'Nouvel article' : article.title }}
+{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('membre_blog_list') }}"><-- Retour</a>
+
+    {% if new %}
+        <h1>Créer un nouvel article</h1>
+    {% else %}
+        <h1>Modifier un article</h1>
+        <div class="lead">{{ article.title }}</div>
+    {% endif %}
+
+    {{ form(form) }}
+
+    {% if not new %}
+        <a href="{{ path('membre_blog_remove', {id: article.id}) }}" class="btn btn-danger">Supprimer</a>
+    {% endif %}
+
+{% endblock %}
+

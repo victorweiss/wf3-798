@@ -19,6 +19,11 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function findRecentArticles(int $limit = null)
+    {
+        return $this->findBy([], ['id' => 'DESC'], $limit);
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
