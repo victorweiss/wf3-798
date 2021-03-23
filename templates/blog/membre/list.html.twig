@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Mes articles
+{% endblock %}
+
+{% block body %}
+
+    <div class="text-end">
+        <a href="{{ path('membre_blog_create') }}" class="btn btn-primary">+ Nouvel article</a>
+    </div>
+
+    ..liste..
+
+{% endblock %}
+
