@@ -8,10 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/contact-pro")
+ */
 class ContactProController extends AbstractController
 {
     /**
-     * @Route("/a/admin/contact-pro", name="admin_contact_pro")
+     * @Route("/", name="admin_contact_pro")
      */
     public function index(ContactProRepository $contactProRepository): Response
     {
@@ -23,7 +26,7 @@ class ContactProController extends AbstractController
     }
 
     /**
-     * @Route("/a/admin/contact-pro/{id<\d+>}/delete", name="admin_contact_pro_delete")
+     * @Route("/{id<\d+>}/delete", name="admin_contact_pro_delete")
      */
     public function delete(ContactPro $contactPro)
     {

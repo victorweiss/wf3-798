@@ -45,4 +45,18 @@ class BaseController extends AbstractController
             'route_name' => $routeName,
         ]);
     }
+
+    /**
+     * @Route("/redirect-user", name="redirect_user")
+     */
+    public function redirectUser()
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin');
+        } elseif ($this->isGranted('ROLE_MEMBER')) {
+            return $this->redirectToRoute('member');
+        } else {
+            return $this->redirectToRoute('home');
+        }
+    }
 }
