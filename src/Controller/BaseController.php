@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,16 +38,10 @@ class BaseController extends AbstractController
         return $this->render('base/about.html.twig');
     }
 
-    public function header(string $routeName)
+    public function header(string $routeName, ArticleRepository $articleRepository)
     {
-        $articles = [
-            [ 'titre' => 'Article 1' ],
-            [ 'titre' => 'Article 2' ],
-            [ 'titre' => 'Article 3' ],
-        ];
-
         return $this->render('base/_header.html.twig', [
-            'articles' => $articles,
+            'articles' => $articleRepository->findRecentArticles(3),
             'route_name' => $routeName,
         ]);
     }

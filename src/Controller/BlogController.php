@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Service\UploadService;
 use Knp\Component\Pager\PaginatorInterface;
@@ -35,7 +37,7 @@ class BlogController extends AbstractController
         $articles = $paginator->paginate(
             $articleRepository->findBlogArticles(),
             $request->query->getInt('page', 1),
-            1
+            12
         );
 
         return $this->render('blog/index.html.twig', [
@@ -46,10 +48,26 @@ class BlogController extends AbstractController
     /**
      * @Route("/article/{id}", name="blog_article")
      */
-    public function article(Article $article): Response
+    public function article(Article $article, Request $request): Response
     {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setArticle($article);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', "Merci pour votre commentaire");
+            return $this->redirectToRoute('blog_article', [ 'id' => $article->getId() ]);
+        }
+
         return $this->render('blog/article.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView(),
         ]);
     }
 
