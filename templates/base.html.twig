@@ -29,12 +29,6 @@
 
         {% include 'base/_footer.html.twig' %}
 
-        {#
-            - J'ai mis le block javascripts en bas de page et j'ai enlevé les 'defer'
-            car les scripts ne se chargeaient pas correctement.
-            - J'ai aussi utilisé jQuery + popper + bootstrap au lieu de bootstrap.bundle.js
-            car il utilise jQuery lite
-        #}
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
