@@ -20,7 +20,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for article in articles %}
-                                    <li><a class="dropdown-item" href="{{ path('blog_article') }}">{{ article.titre }}</a></li>
+{#                                    <li><a class="dropdown-item" href="{{ path('blog_article') }}">{{ article.titre }}</a></li>#}
                                 {% endfor %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ path('blog') }}">Tous les articles</a></li>

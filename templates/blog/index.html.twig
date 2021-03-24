@@ -8,37 +8,27 @@
     <div class="lead">Découvrez mon univers</div>
 
     <div class="row mt-5">
-        {% for x in 1..12 %}
+        {% for article in articles %}
             <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card">
-                    <a href="{{ path('blog_article') }}">
-                        <img src="https://picsum.photos/id/{{ random(1,1000) }}/400/300" class="card-img-top w-100" alt="...">
+                    <a href="{{ path('blog_article', {id: article.id}) }}">
+                        <div class="img-ratio" style="--ratio: 60%;">
+                            <div class="img">
+                                <img src="{{ asset(article.imagePath) }}" class="card-img-top w-100" alt="...">
+                            </div>
+                        </div>
                     </a>
                     <div class="card-body">
-                        <h5 class="card-title">Article {{ x }}</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum nostrum officiis quis.</p>
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.contentEllipsis }}</p>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 
-    <nav aria-label="Page navigation example" class="mt-4">
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="navigation">
+        {{ knp_pagination_render(articles) }}
+    </div>
 
 {% endblock %}

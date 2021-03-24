@@ -5,34 +5,51 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\UploadService;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class BlogController extends AbstractController
 {
+    private $uploadService;
+
+    public function __construct(UploadService $uploadService)
+    {
+        $this->uploadService = $uploadService;
+    }
+
     # --- Front
 
     /**
      * @Route("/blog", name="blog")
      */
-    public function index(): Response
+    public function index(
+        ArticleRepository $articleRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response
     {
-        return $this->render('blog/index.html.twig', [
+        $articles = $paginator->paginate(
+            $articleRepository->findBlogArticles(),
+            $request->query->getInt('page', 1),
+            1
+        );
 
+        return $this->render('blog/index.html.twig', [
+            'articles' => $articles
         ]);
     }
 
     /**
-     * @Route("/article", name="blog_article")
+     * @Route("/article/{id}", name="blog_article")
      */
-    public function article(): Response
+    public function article(Article $article): Response
     {
         return $this->render('blog/article.html.twig', [
-
+            'article' => $article
         ]);
     }
 
@@ -74,20 +91,12 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $image */
             $image = $form->get('image')->getData();
+            if ($image) {
+                $fileName = $this->uploadService->uploadImage($image, $article);
+                $article->setImage($fileName);
+            }
 
-            $slugger = new AsciiSlugger();
-            $fileName = $slugger->slug($image->getClientOriginalName())->lower();
-            $fileName = explode('-', $fileName);
-            $fileName = array_slice($fileName, 0, -1);
-            $fileName = join('-', $fileName);
-            $fileName .= '-' . uniqid() . '.' . $image->guessExtension();
-
-            $path = $this->getParameter('upload_image_directory') . '/blog';
-            $image->move($path, $fileName);
-
-            $article->setImage($fileName);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();

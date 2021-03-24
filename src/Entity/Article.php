@@ -47,6 +47,24 @@ class Article
         $this->createdAt = new DateTime();
     }
 
+    public function getImageDirectory(): string
+    {
+        return 'blog';
+    }
+
+    public function getImagePath(): string
+    {
+        return 'images/blog/' . $this->image;
+    }
+
+    public function getContentEllipsis(): string
+    {
+        $text = substr($this->content, 0,100);
+        $dots = strlen($this->content) > 100 ? '...' : '';
+        return $text . $dots;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

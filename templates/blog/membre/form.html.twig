@@ -8,6 +8,10 @@
 
     <a href="{{ path('membre_blog_list') }}"><-- Retour</a>
 
+    <div>
+        <img src="{{ asset(article.imagePath) }}" alt="" style="width: 200px;">
+    </div>
+
     {% if new %}
         <h1>Créer un nouvel article</h1>
     {% else %}

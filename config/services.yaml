@@ -40,3 +40,7 @@ services:
     App\Service\EmailService:
         arguments:
             $emailAdmin: '%email_admin%'
+
+    App\Service\UploadService:
+        arguments:
+            $uploadImageDirectory: '%upload_image_directory%'

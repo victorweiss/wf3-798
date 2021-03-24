@@ -21,6 +21,7 @@ class ArticleType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Ajoutez une image',
                 'mapped' => false,
+                'required' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => $article->getId() ? 'Modifier' : 'Ajouter'

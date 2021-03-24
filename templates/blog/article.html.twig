@@ -8,19 +8,15 @@
         <a href="{{ path('blog') }}" class="small text-dark text-decoration-none">&#8592; Retour</a>
     </div>
 
-    <img src="https://picsum.photos/id/{{ random(1,1000) }}/800/350" alt="" class="w-100">
+    <img src="{{ asset(article.imagePath) }}" alt="" class="w-100">
 
     <div class="mt-3">
-        <h1>Titre de l'article</h1>
-        <div class="lead">Publié le XX/XX/XXXX par John Doe</div>
+        <h1>{{ article.title }}</h1>
+        <div class="lead">Publié le {{ article.createdAt|date('d/m/Y') }} par John Doe</div>
     </div>
 
     <div class="my-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda consectetur corporis cupiditate distinctio esse exercitationem hic id, incidunt ipsa ipsam iure nam nostrum omnis perspiciatis quaerat quibusdam quod reiciendis sapiente sed temporibus ut voluptatum? A aliquid eligendi facilis, iusto maiores nesciunt nulla quam reprehenderit voluptas? Aliquid eaque earum, error, facilis fuga fugit in labore, laboriosam nesciunt officiis omnis quam reiciendis tempora vero voluptas. Ad aliquam aperiam at atque beatae blanditiis consectetur corporis delectus dolores ea earum eius eveniet ex fugit hic illo incidunt inventore maxime minus molestias nesciunt nihil nisi nulla obcaecati placeat quam qui quidem quis quod ratione sapiente, similique sunt ullam? Accusantium blanditiis eligendi eos magni minima modi mollitia nostrum optio placeat qui quibusdam quis, quos repellat repudiandae, sequi veniam voluptatibus. Alias fuga fugit illum inventore ipsum magnam obcaecati odit quae, ratione voluptatem! Architecto aut blanditiis consequatur dignissimos eaque eos est inventore odio quidem voluptas! Dolorum, natus.
-        <br><br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda consectetur corporis cupiditate distinctio esse exercitationem hic id, incidunt ipsa ipsam iure nam nostrum omnis perspiciatis quaerat quibusdam quod reiciendis sapiente sed temporibus ut voluptatum? A aliquid eligendi facilis, iusto maiores nesciunt nulla quam reprehenderit voluptas? Aliquid eaque earum, error, facilis fuga fugit in labore, laboriosam nesciunt officiis omnis quam reiciendis tempora vero voluptas. Ad aliquam aperiam at atque beatae blanditiis consectetur corporis delectus dolores ea earum eius eveniet ex fugit hic illo incidunt inventore maxime minus molestias nesciunt nihil nisi nulla obcaecati placeat quam qui quidem quis quod ratione sapiente, similique sunt ullam? Accusantium blanditiis eligendi eos magni minima modi mollitia nostrum optio placeat qui quibusdam quis, quos repellat repudiandae, sequi veniam voluptatibus. Alias fuga fugit illum inventore ipsum magnam obcaecati odit quae, ratione voluptatem! Architecto aut blanditiis consequatur dignissimos eaque eos est inventore odio quidem voluptas! Dolorum, natus.
-        <br><br>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda consectetur corporis cupiditate distinctio esse exercitationem hic id, incidunt ipsa ipsam iure nam nostrum omnis perspiciatis quaerat quibusdam quod reiciendis sapiente sed temporibus ut voluptatum? A aliquid eligendi facilis, iusto maiores nesciunt nulla quam reprehenderit voluptas? Aliquid eaque earum, error, facilis fuga fugit in labore, laboriosam nesciunt officiis omnis quam reiciendis tempora vero voluptas. Ad aliquam aperiam at atque beatae blanditiis consectetur corporis delectus dolores ea earum eius eveniet ex fugit hic illo incidunt inventore maxime minus molestias nesciunt nihil nisi nulla obcaecati placeat quam qui quidem quis quod ratione sapiente, similique sunt ullam? Accusantium blanditiis eligendi eos magni minima modi mollitia nostrum optio placeat qui quibusdam quis, quos repellat repudiandae, sequi veniam voluptatibus. Alias fuga fugit illum inventore ipsum magnam obcaecati odit quae, ratione voluptatem! Architecto aut blanditiis consequatur dignissimos eaque eos est inventore odio quidem voluptas! Dolorum, natus.
+        {{ article.content|nl2br }}
     </div>
 
 {% endblock %}
