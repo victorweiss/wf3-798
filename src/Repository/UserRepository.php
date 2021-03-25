@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -35,6 +36,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
+    }
+
+    /**
+     * @return User[]
+     */
+    public function findUnverifiedUsersToDelete(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.emailVerified = FALSE')
+            ->andWhere('u.createdAt < :date')
+            ->setParameter('date', new DateTime("- 7 days"))
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
