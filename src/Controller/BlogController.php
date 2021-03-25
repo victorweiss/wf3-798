@@ -9,6 +9,7 @@ use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Service\UploadService;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,9 +77,12 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/mon-espace/articles", name="membre_blog_list")
+     * @IsGranted("ROLE_USER")
      */
     public function membreBlogList(ArticleRepository $articleRepository)
     {
+        // $this->denyAccessUnlessGranted('ROLE_USER');
+
         $articles = $articleRepository->findRecentArticles(12);
 
         return $this->render('blog/membre/list.html.twig', [
@@ -88,6 +92,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/mon-espace/articles/nouveau", name="membre_blog_create")
+     * @IsGranted("ROLE_MEMBER", message="Seuls les membres peuvent écrire des articles")
      */
     public function membreBlogCreate(Request $request)
     {
@@ -97,6 +102,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/mon-espace/articles/modifier/{id}", name="membre_blog_update")
+     * @IsGranted("ROLE_USER")
      */
     public function membreBlogUpdate(Article $article, Request $request)
     {
@@ -132,6 +138,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/mon-espace/articles/supprimer/{id}", name="membre_blog_remove")
+     * @IsGranted("ROLE_USER")
      */
     public function membreBlogRemove(Article $article)
     {

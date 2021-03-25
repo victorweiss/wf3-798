@@ -32,7 +32,11 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            {% if is_granted('ROLE_USER') %}
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            {% else %}
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>

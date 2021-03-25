@@ -6,9 +6,11 @@
 
 {% block body %}
 
-    <div class="text-end">
-        <a href="{{ path('membre_blog_create') }}" class="btn btn-primary">+ Nouvel article</a>
-    </div>
+    {% if is_granted('ROLE_MEMBER') %}
+        <div class="text-end">
+            <a href="{{ path('membre_blog_create') }}" class="btn btn-primary">+ Nouvel article</a>
+        </div>
+    {% endif %}
 
     <div class="row mt-5">
         {% for article in articles %}
