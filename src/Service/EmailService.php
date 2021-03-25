@@ -11,16 +11,19 @@ class EmailService
 {
     private $mailer;
     private $emailAdmin;
+    private $emailDeveloper;
     private $appEnv;
     private $logger;
 
     public function __construct(
         string $emailAdmin,
+        string $emailDeveloper,
         string $appEnv,
         MailerInterface $mailer,
         LoggerInterface $mailerLogger
     ) {
         $this->emailAdmin = $emailAdmin;
+        $this->emailDeveloper = $emailDeveloper;
         $this->mailer = $mailer;
         $this->appEnv = $appEnv;
         $this->logger = $mailerLogger;
@@ -42,7 +45,7 @@ class EmailService
             if (!isset($data['subject'])) {
                 throw new Exception("You should specify a subject");
             }
-            $data['to'] = $this->emailAdmin;
+            $data['to'] = $this->emailDeveloper;
         }
 
         $email = (new TemplatedEmail())

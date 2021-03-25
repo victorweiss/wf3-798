@@ -1,0 +1,11 @@
+{% extends "email/base.html.twig" %}
+
+{% block body %}
+
+    Bonjour {{ user.firstname }}, <br><br>
+
+    Merci de confirmer votre inscription en cliquant sur le lien ci-dessous : <br><br>
+
+    <a href="{{ absolute_url(path('verify_email', {token: user.id|nzo_encrypt})) }}">Confirmer mon inscription</a>
+
+{% endblock %}

@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     email_admin: '%env(EMAIL_ADMIN)%'
+    email_developer: '%env(EMAIL_DEVELOPER)%'
     app_env: '%env(APP_ENV)%'
     upload_image_directory: '%kernel.project_dir%/public/images'
 
@@ -40,6 +41,7 @@ services:
     App\Service\EmailService:
         arguments:
             $emailAdmin: '%email_admin%'
+            $emailDeveloper: '%email_developer%'
 
     App\Service\UploadService:
         arguments:

@@ -105,6 +105,9 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "nzo/url-encryptor-bundle": {
+        "version": "v6.0.1"
+    },
     "php": {
         "version": "7.4"
     },
