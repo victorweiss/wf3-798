@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-4 mx-auto">
+
+            {% for flashError in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
+
+            <h1>Register</h1>
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+                {{ form_row(registrationForm.submit) }}
+            {{ form_end(registrationForm) }}
+
+
+            <div class="modal fade" id="termsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">CGU</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet assumenda deserunt excepturi fugit iure magnam, nostrum numquam perspiciatis reprehenderit tenetur, totam. Asperiores assumenda commodi cupiditate delectus doloremque ea eius exercitationem id in iusto modi natus nihil quibusdam quo reiciendis saepe tempore vero, voluptate. Ab accusantium alias, animi delectus dolore doloremque ea eaque enim error explicabo, illum inventore molestias necessitatibus nisi perspiciatis quaerat quis quisquam quos temporibus unde. Aliquid consectetur consequatur corporis cum deleniti dolorem dolorum enim esse eveniet, facilis itaque minima molestiae neque qui sed sequi, voluptate! Explicabo id laboriosam magnam necessitatibus nisi omnis optio voluptas! Architecto beatae ea, ex magnam, minus molestiae necessitatibus neque nulla officia perspiciatis, recusandae tempore. Accusamus aliquam culpa cumque delectus deleniti dolorem doloremque dolores est eum facere iusto labore modi molestias mollitia neque nostrum obcaecati officiis perferendis quasi, quis quisquam reiciendis saepe sed sit soluta suscipit temporibus vero. A alias aliquam amet animi asperiores consequatur consequuntur corporis cumque dicta ea eaque error eveniet, ex expedita facere facilis fugiat harum impedit ipsa laboriosam laudantium minima modi, natus ullam unde veritatis vero voluptatum! Aliquid amet architecto delectus dicta dolore fugit molestias nobis nulla obcaecati omnis perferendis reiciendis, sapiente sed unde voluptate. Ab accusamus aliquam animi, architecto at autem beatae corporis culpa deleniti ea est facere facilis fuga fugit impedit magnam magni minima minus molestias mollitia nisi non nulla numquam obcaecati officiis optio placeat provident quaerat quasi quibusdam saepe sequi sint sit, soluta tempore totam vitae? Atque cum debitis esse fugiat modi odit quos! Asperiores cumque dolore necessitatibus quas repellendus sequi, totam voluptate? Autem, blanditiis corporis et illo possimus vero vitae. Ad, atque autem consequatur eius est fugiat harum incidunt laudantium maxime modi molestiae nemo non omnis possimus provident quae quas quia, quidem quis quod quos rem repellat rerum, sapiente temporibus veritatis voluptatem voluptatum. A alias, assumenda cupiditate dicta doloribus explicabo impedit iusto magni mollitia necessitatibus nisi nostrum obcaecati quae quas quibusdam reprehenderit saepe soluta suscipit tenetur ut veniam veritatis voluptas. A accusantium adipisci amet consequatur cumque cupiditate debitis distinctio dolor dolores error eum eveniet exercitationem illo in ipsa iste iusto modi nostrum obcaecati odio quaerat quod repellendus rerum sint tempore ut veniam, voluptas? Aperiam iure mollitia numquam obcaecati odio! Asperiores dolor et explicabo illum ipsum minus, nemo, nobis, perspiciatis quaerat temporibus vel veniam. A accusamus accusantium ad architecto asperiores assumenda est, et facere, fuga, impedit ipsa ipsum iste laboriosam nesciunt non odio perferendis perspiciatis possimus quidem quod suscipit unde vitae. Adipisci aliquid asperiores blanditiis, eius nisi odit qui voluptas! A amet, atque dignissimos dolores dolorum ducimus et laboriosam, magnam modi necessitatibus nihil optio quam quasi quidem quis velit voluptas. Adipisci, aliquid aperiam asperiores est ex laudantium magni, officia, quos reiciendis repellat voluptate voluptatem. Accusamus adipisci alias amet animi asperiores atque consequatur debitis dicta doloremque dolorum earum eius eligendi enim ex id illo iste iure labore laudantium magnam maiores modi nam nisi non nostrum obcaecati odit omnis quam quis, quisquam repellendus saepe sint sit unde vel veniam voluptatibus! Amet aut dolores illum laborum magni quia repellat repellendus. Error illum quas ullam voluptatibus! Accusamus blanditiis, cumque dicta impedit laborum libero mollitia nesciunt, numquam obcaecati officia pariatur possimus quo quod sapiente sed vitae voluptate. Consequatur, consequuntur dignissimos est fugiat molestias mollitia nam nostrum quas quis sunt. Aliquam ea eaque earum, eius facilis, hic in ipsa nam obcaecati perspiciatis placeat rem suscipit tenetur. Accusantium ad alias animi aperiam aut consectetur debitis ducimus ea eum excepturi, fugit itaque iure magnam minima necessitatibus nisi nulla odit pariatur perferendis possimus, qui quo repellat suscipit tempora tenetur totam unde veniam vitae, voluptas voluptatum. Ab animi asperiores at cupiditate dolor eveniet ex facilis molestiae officiis perspiciatis praesentium quam repellendus repudiandae similique, vero. Cumque doloribus eius eum excepturi ipsa iure maxime minima pariatur placeat quas quisquam quo ratione, saepe tempora tempore veniam voluptas. Aliquam consectetur, corporis error illo ipsum necessitatibus nihil, nisi odit provident quibusdam quod repellendus vel veniam voluptate voluptatibus. Eligendi fuga libero odit. Cupiditate doloremque odio quas suscipit tempora. Amet aperiam cum dignissimos, doloremque dolorum facere nobis repellendus tempora ullam voluptatem! Dicta earum eius et facilis magnam molestias nihil, odio officiis qui quidem repellendus sit soluta temporibus, ut voluptate. Alias assumenda deserunt ea fuga illo, mollitia, natus nesciunt nobis non numquam, perferendis similique tempore! Architecto asperiores at commodi, consectetur consequuntur cumque cupiditate eius eligendi excepturi facilis illo maiores, molestiae, nemo officia quisquam repellendus soluta tempora? Architecto, cumque distinctio enim facere fuga nostrum quam ratione reiciendis rerum soluta temporibus vel voluptatum! Ad asperiores cum deleniti deserunt dolorem est et, eveniet exercitationem inventore laudantium minus nesciunt nihil nobis perferendis praesentium quasi quibusdam quidem quod ratione reprehenderit suscipit unde veniam voluptatibus. Aliquam aspernatur assumenda autem cum distinctio dolorum ducimus esse omnis placeat porro praesentium quas sunt ut voluptas, voluptatem? Ad commodi dicta eligendi esse explicabo fugiat illo illum inventore laudantium magni, minima modi natus necessitatibus nobis reprehenderit vel veniam, voluptatem voluptates? Dolorum facere necessitatibus sint soluta! Ad amet animi aperiam at, commodi delectus dolore dolorem ea est et fuga illo, inventore magnam magni maxime modi necessitatibus nemo nihil numquam omnis praesentium reprehenderit rerum saepe sapiente tenetur ullam voluptas voluptatum. Ad adipisci aliquam amet architecto asperiores autem cumque dolor dolore, ducimus eos facilis itaque iure laborum libero magnam minima minus natus nemo non, nostrum odit placeat porro praesentium quae quidem ratione reiciendis, rem ut vel veniam vero voluptas voluptate voluptatibus. Debitis explicabo ipsum laudantium obcaecati recusandae. Debitis dicta facere libero nulla. A accusantium animi asperiores aspernatur deleniti, distinctio dolorem, eos ex excepturi facilis id libero minus molestiae necessitatibus neque nobis officia perspiciatis quasi quia repudiandae sed suscipit tenetur ut? Fugit, quos tempora? Atque blanditiis consectetur ducimus eligendi eos eum excepturi hic itaque nam, natus nisi non omnis porro quam quasi quia quidem repellendus velit, vero voluptates! Aperiam aspernatur, aut consequatur cum debitis dicta dolor dolore ea eius impedit maxime molestiae, neque nihil pariatur, perferendis porro quae quaerat quisquam rem repellendus reprehenderit sit soluta temporibus ullam veniam veritatis voluptatem! Accusamus ad amet assumenda cum dolores esse exercitationem facere fuga inventore ipsum modi quae quis quod rem, tempora temporibus velit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                Déjà un compte ? <a href="{{ path('app_login') }}">Connexion</a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
