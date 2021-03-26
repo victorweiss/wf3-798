@@ -1,3 +1,4 @@
 blog:
   title: Welcome on my website
   lead: Discover my world !
+  hello: Hello %name%
