@@ -21,7 +21,7 @@
 
     {{ form(form) }}
 
-    {% if not new %}
+    {% if is_granted(constant('App\\Security\\Voter\\ArticleVoter::DELETE'), article) %}
         <a href="{{ path('membre_blog_remove', {id: article.id}) }}" class="btn btn-danger">Supprimer</a>
     {% endif %}
 

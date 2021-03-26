@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use App\Security\Voter\ArticleVoter;
 use App\Service\UploadService;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -83,7 +84,11 @@ class BlogController extends AbstractController
     {
         // $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $articles = $articleRepository->findRecentArticles(12);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $articles = $articleRepository->findAll();
+        } else {
+            $articles = $articleRepository->findUserArticles($this->getUser());
+        }
 
         return $this->render('blog/membre/list.html.twig', [
             'articles' => $articles
@@ -96,7 +101,7 @@ class BlogController extends AbstractController
      */
     public function membreBlogCreate(Request $request)
     {
-        $article = new Article();
+        $article = (new Article())->setUser($this->getUser());
         return $this->handleForm($article, $request, true);
     }
 
@@ -106,6 +111,7 @@ class BlogController extends AbstractController
      */
     public function membreBlogUpdate(Article $article, Request $request)
     {
+        $this->denyAccessUnlessGranted(ArticleVoter::EDIT, $article);
         return $this->handleForm($article, $request, false);
     }
 
@@ -142,6 +148,7 @@ class BlogController extends AbstractController
      */
     public function membreBlogRemove(Article $article)
     {
+        $this->denyAccessUnlessGranted(ArticleVoter::DELETE, $article, "Arrêtez d'essayer de supprimer les articles des autres, vous allez vous faire bannir !");
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
