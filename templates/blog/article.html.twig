@@ -12,7 +12,7 @@
 
     <div class="mt-3">
         <h1>{{ article.title }}</h1>
-        <div class="lead">Publié le {{ article.createdAt|date('d/m/Y') }} par John Doe</div>
+        <div class="lead">Publié le {{ article.createdAt|date('d/m/Y') }} par {{ article.user.fullname }}</div>
     </div>
 
     <div class="my-4">

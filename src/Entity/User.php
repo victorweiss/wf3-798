@@ -80,6 +80,11 @@ class User implements UserInterface
     }
 
 
+    public function getFullname(): string
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
     public function isBannedNow(): bool
     {
         return $this->getBannedUntil() &&
