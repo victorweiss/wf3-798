@@ -1,10 +1,23 @@
 <footer class="footer mt-auto py-3 bg-light text-center">
     <div class="container">
         {% for locale in enabled_locales %}
+            {% set flag %}
+                <img src="{{ asset('images/flags/' ~ locale ~ '.png') }}"
+                     alt="{{ ('locale.' ~ locale)|trans }}"
+                     title="{{ ('locale.' ~ locale)|trans }}"
+                     width="32px"
+                >
+            {% endset %}
+
             {% if locale == app.request.locale %}
-                {{ locale }}
+                {{ flag }}
             {% else %}
-                <a href="{{ path('change_locale', {locale: locale}) }}">{{ locale }}</a>
+                <a href="{{ path('change_locale', {locale: locale}) }}"
+                   title="{{ ('locale.' ~ locale)|trans }}"
+                   class="text-decoration-none"
+                >
+                    {{ flag }}
+                </a>
             {% endif %}
         {% endfor %}
         <hr>

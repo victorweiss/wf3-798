@@ -2,3 +2,7 @@ blog:
   title: Bienvenue sur mon blog
   lead: Découvrez mon univers
   hello: Bonjour %name%
+
+locale:
+  fr: Français
+  en: Anglais
