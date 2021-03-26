@@ -18,6 +18,10 @@ class UserChecker implements UserCheckerInterface
         if (!$user->getEmailVerified()) {
             throw new CustomUserMessageAccountStatusException("Merci de vérifier votre email en cliquant sur le lien que nous vous avons envoyé.");
         }
+
+        if ($user->isBannedNow()) {
+            throw new CustomUserMessageAccountStatusException("Vous êtes banni jusqu'au " . $user->getBannedUntil()->format('d/m/Y'));
+        }
     }
 
     public function checkPostAuth(UserInterface $user)

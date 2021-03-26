@@ -61,10 +61,23 @@ class User implements UserInterface
      */
     private $emailVerified = false;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $bannedUntil;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
+
+
+    public function isBannedNow(): bool
+    {
+        return $this->getBannedUntil() &&
+            $this->getBannedUntil() > new DateTime();
+    }
+
 
 
     public function getId(): ?int
@@ -192,6 +205,18 @@ class User implements UserInterface
     public function setEmailVerified(bool $emailVerified): self
     {
         $this->emailVerified = $emailVerified;
+
+        return $this;
+    }
+
+    public function getBannedUntil(): ?DateTimeInterface
+    {
+        return $this->bannedUntil;
+    }
+
+    public function setBannedUntil(?DateTimeInterface $bannedUntil): self
+    {
+        $this->bannedUntil = $bannedUntil;
 
         return $this;
     }
