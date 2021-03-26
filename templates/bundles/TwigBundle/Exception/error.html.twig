@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Erreur !
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="mt-5">
+            Erreur {{ status_code }} ({{ status_text }}) : {{ exception.message }}
+        </div>
+    </div>
+{% endblock %}
