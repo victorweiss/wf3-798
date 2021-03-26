@@ -37,7 +37,7 @@ class BlogController extends AbstractController
     ): Response
     {
         $articles = $paginator->paginate(
-            $articleRepository->findBlogArticles(),
+            $articleRepository->findBlogArticles($request->query->all()),
             $request->query->getInt('page', 1),
             12
         );

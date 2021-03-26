@@ -25,10 +25,17 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->findBy([], ['id' => 'DESC'], $limit);
     }
 
-    public function findBlogArticles()
+    public function findBlogArticles(array $params = [])
     {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'DESC')
+        $qb = $this->createQueryBuilder('a');
+
+        if ($cat = $params['cat'] ?? null) {
+            $qb->leftJoin('a.categories', 'c')
+                ->andWhere('c.slug = :slug')
+                ->setParameter('slug', $cat);
+        }
+
+        return $qb->orderBy('a.id', 'DESC')
             ->getQuery();
     }
 

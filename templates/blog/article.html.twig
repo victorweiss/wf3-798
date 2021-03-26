@@ -13,6 +13,11 @@
     <div class="mt-3">
         <h1>{{ article.title }}</h1>
         <div class="lead">Publié le {{ article.createdAt|date('d/m/Y') }} par {{ article.user.fullname }}</div>
+        <div class="hashtags">
+            {% for category in article.categories %}
+                <a href="{{ path('blog', {cat: category.slug}) }}" class="badge bg-primary">{{ category.name }}</a>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="my-4">

@@ -4,6 +4,12 @@
 
 {% block body %}
 
+    {% if app.request.query.get('cat') %}
+        <div class="float-end">
+            <a href="{{ path('blog') }}" class="btn btn-outline-danger">X Annuler</a>
+        </div>
+    {% endif %}
+
     <h1>Bienvenue sur mon blog</h1>
     <div class="lead">Découvrez mon univers</div>
 

@@ -55,10 +55,16 @@ class Article
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
         $this->comments = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getImageDirectory(): string
@@ -170,6 +176,33 @@ class Article
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeArticle($this);
+        }
 
         return $this;
     }
