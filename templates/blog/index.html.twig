@@ -10,8 +10,8 @@
         </div>
     {% endif %}
 
-    <h1>Bienvenue sur mon blog</h1>
-    <div class="lead">Découvrez mon univers</div>
+    <h1>{{ 'blog.title'|trans }}</h1>
+    <div class="lead">{{ 'blog.lead'|trans }}</div>
 
     <div class="row mt-5">
         {% for article in articles %}

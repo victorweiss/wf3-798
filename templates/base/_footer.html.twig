@@ -1,5 +1,13 @@
 <footer class="footer mt-auto py-3 bg-light text-center">
     <div class="container">
+        {% for locale in enabled_locales %}
+            {% if locale == app.request.locale %}
+                {{ locale }}
+            {% else %}
+                <a href="{{ path('change_locale', {locale: locale}) }}">{{ locale }}</a>
+            {% endif %}
+        {% endfor %}
+        <hr>
         FOOTER
     </div>
 </footer>

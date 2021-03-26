@@ -4,3 +4,4 @@ twig:
 
     globals:
         align: center # Knp Paginator
+        enabled_locales: '%enabled_locales%'
